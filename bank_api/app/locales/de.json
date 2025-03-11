@@ -1,0 +1,10 @@
+{
+"min_balance_error": "Zum Eröffnen eines Kontos ist eine erste Einzahlung von {min_balance} erforderlich.",
+"account_creation_success": "Konto erfolgreich erstellt.",
+"transfer_success": "Überweisung erfolgreich abgeschlossen.",
+"transfer_not_possible_min_bal": "Überweisung nicht möglich. Mindestguthaben von {min_balance} {currency} muss nach der Überweisung aufrechterhalten werden.",
+"invalid_account_from": "Quellkonto ist ungültig.",
+"invalid_account_to": "Zielkonto ist ungültig.",
+"account_not_found": "Konto nicht gefunden",
+"user_not_found": "Benutzer nicht gefunden"
+}
