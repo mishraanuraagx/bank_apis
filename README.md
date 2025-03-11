@@ -1,3 +1,5 @@
+Please find the implementation and the required readme doc within the bank_api/ directory  -- Anuraag Mishra
+
 ### Objective
 
 Your assignment is to build an internal API for a fake financial institution using Python and any framework  except Django and Litestar.
