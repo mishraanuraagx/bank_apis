@@ -4,6 +4,7 @@ import os
 
 class Localization:
     def __init__(self, locale="en"):
+        self.strings = None
         self.locale = locale
         self.load_locale()
 

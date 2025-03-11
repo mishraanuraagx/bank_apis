@@ -6,6 +6,7 @@ from localization import Localization
 
 localizer = Localization(locale="en")
 
+
 # Create
 def create_user(db: Session, name: str):
     db_user = User(name=name)
@@ -13,6 +14,7 @@ def create_user(db: Session, name: str):
     db.commit()
     db.refresh(db_user)
     return db_user
+
 
 def create_account(db: Session, user_id: int, initial_balance: float):
     if initial_balance <= 0 or initial_balance < config.MIN_ACCOUNT_BALANCE:
@@ -29,7 +31,6 @@ def create_account(db: Session, user_id: int, initial_balance: float):
 
     db_account = Account(user_id=user_id, balance=initial_balance)
 
-
     db.add(db_account)
     db.commit()
     db.refresh(db_account)
@@ -41,9 +42,11 @@ def read_users(db: Session):
     users = db.query(User).all()
     return users
 
+
 def read_accounts(db: Session):
     accounts = db.query(Account).all()
     return accounts
+
 
 def read_account(db: Session, account_id: int):
     account = db.query(Account).filter(Account.id == account_id).first()
@@ -51,13 +54,14 @@ def read_account(db: Session, account_id: int):
         raise HTTPException(status_code=404, detail=localizer.get("account_not_found"))
     return account
 
+
 def get_transaction_history(db: Session, account_id: int):
     account = db.query(Account).filter(Account.id == account_id).first()
     if account is None:
         raise HTTPException(status_code=404, detail=localizer.get("account_not_found"))
 
     acc_transaction_history = db.query(Transaction).filter((Transaction.from_account_id == account_id) |
-    (Transaction.to_account_id == account_id)).all()
+                                                           (Transaction.to_account_id == account_id)).all()
     return acc_transaction_history
 
 
@@ -92,6 +96,6 @@ def transfer_money(db: Session, from_account_id: int, to_account_id: int, amount
     else:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=localizer.get("transfer_not_possible_min_bal", min_balance=config.MIN_ACCOUNT_BALANCE, currency=config.CURRENCY_SHORT)
+            detail=localizer.get("transfer_not_possible_min_bal", min_balance=config.MIN_ACCOUNT_BALANCE,
+                                 currency=config.CURRENCY_SHORT)
         )
-    return None
