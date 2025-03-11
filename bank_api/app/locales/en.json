@@ -1,0 +1,10 @@
+{
+    "min_balance_error": "Initial deposit of {min_balance} is required to start an account.",
+    "account_creation_success": "Account created successfully.",
+    "transfer_success": "Transfer completed successfully.",
+    "transfer_not_possible_min_bal": "Transfer not possible. Minimum balance of {min_balance} {currency} must be maintained after transfer.",
+    "invalid_account_from": "Source account is invalid.",
+    "invalid_account_to": "Destination account is invalid.",
+    "account_not_found": "Account not found",
+    "user_not_found": "User not found"
+}
