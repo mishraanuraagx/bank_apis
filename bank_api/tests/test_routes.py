@@ -1,10 +1,14 @@
 import sys
 import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../app')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'app')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '.')))
+if os.path.basename(os.getcwd()) == "tests":
+    os.chdir(os.path.abspath(os.path.join(os.path.dirname(__file__), 'bank_api/app')))
+
 import pytest
 from fastapi.testclient import TestClient
 from app.main import app
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../app')))
 
 client = TestClient(app)
 
