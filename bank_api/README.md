@@ -19,7 +19,7 @@ You can access the interactive API documentation at:
 ### All APIs
 ![base_api.png](images%2Fbase_api.png)
 
-### Transfer API
+### Example: Transfer API
 ![transfer_api.png](images%2Ftransfer_api.png)
 ## Testing
 
@@ -30,14 +30,6 @@ pytest tests\test_routes.py
 ```
 
 This will run the test suite and check for functionality in your routes, such as creating users, creating accounts, transferring money, and reading transaction history.
-
-## Todos:
-
--   **Locale handling:** Learn locale from the URL or user configuration. Load default strings if locale is missing.
--   **Dynamic Configuration:** Investigate if values from `config.py` should be moved to the database. This is especially useful when configurations need to change dynamically, and to support better scalability (e.g., Kubernetes).
--   **Support for Larger Numbers:** Move `account_id` to support larger numbers for scalability.
--   **Unique Usernames:** Currently, users with the same name are allowed. In the future, there should be unique checks for usernames/emails, especially once authentication is added.
--   **Improved API Responses:** Enhance return values for POST requests, especially for the transfer endpoint, which could return a `transaction_id` or additional useful information.
 
 ## Design
 
@@ -151,6 +143,14 @@ CREATE TABLE transactions (
     FOREIGN KEY (to_account_id) REFERENCES accounts(id)
 );
 ```
+
+## Future Improvements/Todos:
+
+-   **Locale handling:** Learn locale from the URL or user configuration. Load default strings if locale is missing.
+-   **Dynamic Configuration:** Investigate if values from `config.py` should be moved to the database. This is especially useful when configurations need to change dynamically, and to support better scalability (e.g., Kubernetes).
+-   **Support for Larger Numbers:** Move `account_id` to support larger numbers for scalability.
+-   **Unique Usernames:** Currently, users with the same name are allowed. In the future, there should be unique checks for usernames/emails, especially once authentication is added.
+-   **Improved API Responses:** Enhance return values for POST requests, especially for the transfer endpoint, which could return a `transaction_id` or additional useful information.
 
 
 
