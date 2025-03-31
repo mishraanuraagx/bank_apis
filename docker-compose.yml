@@ -1,0 +1,27 @@
+services:
+  app:
+    build: .
+    container_name: fastapi-app
+    ports:
+      - "8001:8000"
+    environment:
+      - DATABASE_URL=mysql+pymysql://root:password@db/bankAppDB
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: mysql:5.7
+    container_name: mysql-db-bank
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: bankAppDB
+    ports:
+      - "3300:3306"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

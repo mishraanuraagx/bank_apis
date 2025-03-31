@@ -177,6 +177,9 @@ def transfer_money(db: Session, from_account_id: int, to_account_id: int, amount
         db_to_account.balance += amount
         transaction = Transaction(amount=amount, from_account_id=from_account_id, to_account_id=to_account_id)
         db.add(transaction)
+        # batching
+        # all jobs -> Rabbitmq, MSMQ -> services -> batch commit
+        # worker service + db_job_status
         db.commit()
         db.refresh(db_from_account)
         db.refresh(db_to_account)

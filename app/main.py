@@ -1,3 +1,9 @@
+import sys
+import os
+
+# Add the 'app' directory to sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../app')))
+
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -188,10 +194,10 @@ def get_all_account_transaction_history(account_id: int, db: Session = Depends(g
     Raises:
         HTTPException: If the account is not found.
     """
-    try:
-        account = get_transaction_history(db, account_id)
-        if account is None:
-            raise HTTPException(status_code=404, detail="Account not found")
-        return account
-    except Exception as e:
-        raise e
+    # try:
+    account = get_transaction_history(db, account_id)
+    if account is None:
+        raise HTTPException(status_code=404, detail="Account not found")
+    return account
+    # except Exception as e:
+    #     raise e
